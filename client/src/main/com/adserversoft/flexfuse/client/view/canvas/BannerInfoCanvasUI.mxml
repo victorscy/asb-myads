@@ -1,0 +1,76 @@
+<ads:BannerInfoCanvas xmlns:ads="http://adserversoft.com"
+                      xmlns:mx="http://www.adobe.com/2006/mxml"
+                      xmlns:component="com.adserversoft.flexfuse.client.view.component.*"
+                      width="100%"
+                      height="100%">
+
+    <mx:StringValidator id="bannerNameStringValidator"
+                        source="{bannerNameTI}"
+                        property="text"
+                        minLength="1"
+                        maxLength="200"/>
+
+    <mx:StringValidator id="targetURLStringValidator"
+                        source="{targetURLTI}"
+                        property="text"
+                        minLength="4"
+                        maxLength="200"/>
+
+    <mx:StringValidator id="bannerFileStringValidator" 
+                        source="{bannerFileTI}"
+                        minLength="1"
+                        maxLength="200"
+                        property="text"
+                        requiredFieldError="Banner file is required."
+                        tooLongError="Name of banner file is longer than the maximum allowed length of 200."
+            />
+
+
+    <mx:VBox width="100%">
+        <mx:Form x="0" y="0" height="100%" width="100%" verticalScrollPolicy="auto">
+            <mx:FormItem id="bannerNameFI" label="Banner name:"
+                         required="true" width="100%">
+                <mx:TextInput id="bannerNameTI" width="100%" maxChars="{ApplicationConstants.MAX_CHARS}"/>
+            </mx:FormItem>
+
+
+            <mx:FormItem id="adFormatFI" label="Ad format:" required="true" width="100%">
+                <component:FindSelectedItemComboBox labelField="shortAdFormatName" id="adFormat" width="100%"/>
+            </mx:FormItem>
+
+            <mx:FormItem id="targetURLFI" label="Target URL:" width="100%" required="true">
+                <mx:TextInput id="targetURLTI" width="100%" maxChars="255" restrict="0-9a-zA-Z,$\-_.+!*'():/[]"/>
+            </mx:FormItem>
+
+            <mx:FormItem id="bannerFileFI"
+                         label="File:"
+                         required="true" width="100%">
+                <mx:HBox width="100%">
+                    <mx:TextInput maxChars="255" editable="false" id="bannerFileTI" width="100%"/>
+                    <mx:Button id="browseBtn"
+                               label="Browse"/>
+                </mx:HBox>
+            </mx:FormItem>
+
+
+            <mx:FormItem id="startDateFI" label="Start date:" width="100%">
+                <mx:HBox>
+                    <mx:DateField id="startDateDF" enabled="true"/>
+                </mx:HBox>
+            </mx:FormItem>
+
+            <mx:FormItem id="endDateFI" label="End date:" width="100%">
+                <mx:HBox>
+                    <mx:DateField id="endDateDF" enabled="false"/>
+                    <mx:CheckBox id="ongoingChB" label="ongoing"/>
+                </mx:HBox>
+            </mx:FormItem>
+        </mx:Form>
+    </mx:VBox>
+    
+    <mx:Script>
+        <![CDATA[
+                import com.adserversoft.flexfuse.client.model.ApplicationConstants;                    ]]>
+    </mx:Script>
+
+</ads:BannerInfoCanvas>

@@ -1,0 +1,1 @@
+<!-- Begin ASB MyAds Ad Tag --><SCRIPT LANGUAGE="JAVASCRIPT">var rnd = (new Date()).getTime();var placeUid="${SPLITTER}";var instId="${SPLITTER}";document.write('<S'+'CRIPT LANG' + 'UAGE="JAV' + 'ASCRIPT" src="${REQUESTURL_REQUEST_PARAM_KEY}?${KEYVALUEPARAMS_REQUEST_PARAM_KEY}&count=true&rnd=' + rnd + '">');document.write('</'+'scr'+'ipt>');</script><!-- End ASB MyAds Ad Tag -->
