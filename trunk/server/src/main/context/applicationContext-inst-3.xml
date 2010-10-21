@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+<bean id="dataSource3" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    <property name="url" value="jdbc:mysql://127.0.0.1:3306/myads3?characterEncoding=UTF-8"/>
+    <property name="username" value="banner"/>
+    <property name="password" value="banner123"/>
+</bean>
+
+<bean id="transactionManager3"
+      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource">
+        <ref local="dataSource3"/>
+    </property>
+</bean>
+
+<bean name="geoTargetingDAO3"
+      class="com.adserversoft.flexfuse.server.dao.GeoTargetingDAO"
+      autowire="byName">
+    <property name="dataSource">
+        <ref bean="dataSource3"/>
+    </property>
+</bean>
+
+<bean name="adEventDAO3"
+      class="com.adserversoft.flexfuse.server.dao.AdEventDAO"
+      autowire="byName">
+    <property name="dataSource">
+        <ref bean="dataSource3"/>
+    </property>
+</bean>
+
+<bean name="bannerDAO3"
+      class="com.adserversoft.flexfuse.server.dao.BannerDAO"
+      autowire="byName">
+    <property name="dataSource">
+        <ref bean="dataSource3"/>
+    </property>
+</bean>
+
+<bean name="userDAO3"
+      class="com.adserversoft.flexfuse.server.dao.UserDAO"
+      autowire="byName">
+    <property name="dataSource">
+        <ref bean="dataSource3"/>
+    </property>
+</bean>
+
+<bean name="adPlaceDAO3"
+      class="com.adserversoft.flexfuse.server.dao.AdPlaceDAO"
+      autowire="byName">
+    <property name="dataSource">
+        <ref bean="dataSource3"/>
+    </property>
+</bean>
+
+<bean name="settingsDAO3"
+      class="com.adserversoft.flexfuse.server.dao.SettingsDAO"
+      autowire="byName">
+    <property name="dataSource">
+        <ref bean="dataSource3"/>
+    </property>
+</bean>
+
+<bean name="reportDAO3"
+      class="com.adserversoft.flexfuse.server.dao.ReportDAO"
+      autowire="byName">
+    <property name="dataSource">
+        <ref bean="dataSource3"/>
+    </property>
+</bean>
+
+<bean name="reportManagementServiceTarget3"
+      class="com.adserversoft.flexfuse.server.service.ReportManagementService"
+      autowire="byName">
+</bean>
+
+<bean id="reportManagementService3"
+      class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+    <property name="transactionManager">
+        <ref bean="transactionManager3"/>
+    </property>
+    <property name="target">
+        <ref bean="reportManagementServiceTarget3"/>
+    </property>
+    <property name="transactionAttributes">
+        <props>
+            <prop key="create*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="delete*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>
+        </props>
+    </property>
+</bean>
+
+<bean name="templatesManagementServiceTarget3"
+      class="com.adserversoft.flexfuse.server.service.TemplatesManagementService"
+      autowire="byName">
+</bean>
+
+<bean id="templatesManagementService3"
+      class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+    <property name="transactionManager">
+        <ref bean="transactionManager3"/>
+    </property>
+    <property name="target">
+        <ref bean="templatesManagementServiceTarget3"/>
+    </property>
+    <property name="transactionAttributes">
+        <props>
+            <prop key="create*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="delete*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>
+        </props>
+    </property>
+</bean>
+
+<bean name="userManagementServiceTarget3"
+      class="com.adserversoft.flexfuse.server.service.UserManagementService"
+      autowire="byName">
+</bean>
+
+<bean id="userManagementService3"
+      class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+    <property name="transactionManager">
+        <ref bean="transactionManager3"/>
+    </property>
+    <property name="target">
+        <ref bean="userManagementServiceTarget3"/>
+    </property>
+    <property name="transactionAttributes">
+        <props>
+            <prop key="create*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="delete*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>
+        </props>
+    </property>
+</bean>
+
+<bean name="stateManagementServiceTarget3"
+      class="com.adserversoft.flexfuse.server.service.StateManagementService"
+      autowire="byName">
+</bean>
+
+<bean id="stateManagementService3"
+      class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+    <property name="transactionManager">
+        <ref bean="transactionManager3"/>
+    </property>
+    <property name="target">
+        <ref bean="stateManagementServiceTarget3"/>
+    </property>
+    <property name="transactionAttributes">
+        <props>
+            <prop key="create*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="delete*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>
+        </props>
+    </property>
+</bean>
+
+<bean name="bannerManagementServiceTarget3"
+      class="com.adserversoft.flexfuse.server.service.BannerManagementService"
+      autowire="byName">
+</bean>
+
+<bean id="bannerManagementService3"
+      class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+    <property name="transactionManager">
+        <ref bean="transactionManager3"/>
+    </property>
+    <property name="target">
+        <ref bean="bannerManagementServiceTarget3"/>
+    </property>
+    <property name="transactionAttributes">
+        <props>
+            <prop key="create*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="delete*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>
+        </props>
+    </property>
+</bean>
+
+<bean name="mailManagementServiceTarget3"
+      class="com.adserversoft.flexfuse.server.service.MailManagementService"
+      autowire="byName">
+</bean>
+
+<bean id="mailManagementService3"
+      class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+    <property name="transactionManager">
+        <ref bean="transactionManager3"/>
+    </property>
+    <property name="target">
+        <ref bean="mailManagementServiceTarget3"/>
+    </property>
+    <property name="transactionAttributes">
+        <props>
+            <prop key="create*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="delete*">PROPAGATION_REQUIRED,-Exception</prop>
+            <prop key="*">PROPAGATION_REQUIRED,readOnly,-Exception</prop>
+        </props>
+    </property>
+</bean>
+
+</beans>

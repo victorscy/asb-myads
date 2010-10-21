@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application
+        xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*"
+        xmlns:flexUnitUIRunner="http://www.adobe.com/2009/flexUnitUIRunner"
+        creationComplete="onCreationComplete()">
+
+    <mx:Script>
+		<![CDATA[
+        import com.adserversoft.flexfuse.client.model.vo.BitSetTest;
+
+        import flexunit.framework.TestSuite;
+
+        // Create the test suite and run the tests
+        private function onCreationComplete():void
+        {
+            testRunner.test = createSuite();
+            testRunner.startTest();
+        }
+
+        // Creates the test suite to run
+        private function createSuite():TestSuite {
+            var testSuite:TestSuite = new TestSuite();
+            testSuite.addTestSuite(BitSetTest);
+            return testSuite;
+        }
+		]]>
+	</mx:Script>
+
+    <!-- FlexUnit GUI Component -->
+    <flexUnitUIRunner:TestRunnerBase title="Flex Fuse Tests" id="testRunner" width="100%" height="100%"/>
+</mx:Application>
