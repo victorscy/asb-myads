@@ -126,7 +126,7 @@ public class ReportResultsCanvasMediator extends BaseMediator {
                         break;
                     case ApplicationConstants.REPORT_TYPE_AD_PLACES: // ad place
                         for each (iReportsRow in reportProxy.reportsRowsAC) {
-                            iReportsRow.entityName = bannerProxy.banners.getValue(iReportsRow.adPlaceUid).adPlaceName;
+                            iReportsRow.entityName = adPlaceProxy.adPlaces.getValue(iReportsRow.adPlaceUid).adPlaceName;
                         }
                         break;
                     case ApplicationConstants.REPORT_TYPE_BANNER_ON_AD_PLACES: // banner in ad place

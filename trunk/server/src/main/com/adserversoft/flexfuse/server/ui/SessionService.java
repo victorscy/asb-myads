@@ -1,10 +1,16 @@
 package com.adserversoft.flexfuse.server.ui;
 
+import com.adserversoft.flexfuse.server.api.Banner;
 import com.adserversoft.flexfuse.server.api.ui.ISessionService;
 import com.adserversoft.flexfuse.server.api.ui.UserSession;
 import com.adserversoft.flexfuse.server.service.AbstractManagementService;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 /**
@@ -53,11 +59,11 @@ public class SessionService extends AbstractManagementService implements ISessio
         userSessionsMap = newMap;
     }
 
-    public byte[] getBannerFromAllSession(String bannerUid) {
+    public Banner getBannerFromSessions(String bannerUid) {
         for (UserSession session : (Collection<UserSession>) userSessionsMap.values()) {
-            for (String key : (Set<String>) session.bannerFiles.keySet()) {
-                if (key.compareTo(bannerUid) == 0) {
-                    return (byte[]) session.bannerFiles.get(key);
+            for (String key : (Set<String>) session.uploadedBanners.keySet()) {
+                if (key.equals(bannerUid)) {
+                    return (Banner) session.uploadedBanners.get(key);
                 }
             }
         }

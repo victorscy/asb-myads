@@ -5,7 +5,6 @@ import com.adserversoft.flexfuse.server.api.User;
 import com.adserversoft.flexfuse.server.api.dao.IUserDAO;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -107,11 +106,11 @@ public class UserDAO extends AbstractDAO implements IUserDAO {
 
     @Override
     public void update(User user) throws Exception {
-        SortedMap<String, Object> m = user.getFieldsMapExcept(new String[]{"id", "pic", "email"});
+        SortedMap<String, Object> m = user.getFieldsMapExcept(new String[]{"id", "pic"});
         List parameters = new ArrayList();
         parameters.addAll(m.values());
-        parameters.add(user.getEmail());
-        String sql = "update t_user set " + ApplicationConstants.generateParametrizedColumnNames(m) + " where email=?";
+        parameters.add(user.getId());
+        String sql = "update t_user set " + ApplicationConstants.generateParametrizedColumnNames(m) + " where id=?";
         this.getJdbcTemplate().update(sql, parameters.toArray());
 
     }

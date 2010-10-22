@@ -98,7 +98,7 @@ public class ReportManagementServiceTest extends AbstractTransactionalDataSource
                 int x = rnd.nextInt(banners.size()) + 1;
                 Banner b = (Banner) banners.values().toArray()[x - 1];
                 Integer bannerId = bannerDAO.getBannerByUid(b.getUid()).getId();
-                getBannerClick(adPlaceUID, bannerId, adPlaceId);
+                getBannerClick(adPlaceUID, b.getUid());
                 if (b.getClicks() == null) {
                     b.setClicks(1);
                 } else {
@@ -124,13 +124,13 @@ public class ReportManagementServiceTest extends AbstractTransactionalDataSource
             List<ReportsRow> reportsRows = reportManagementService.loadReport(testReportCriteria);
             for (ReportsRow requestRow : reportsRows) {
                 Banner b = (Banner) banners.get(requestRow.getBannerUid());
-                if (requestRow.getViews() != null &&  b.getViews() != null) {
+                if (requestRow.getViews() != null && b.getViews() != null) {
                     assertEquals(requestRow.getViews(), b.getViews());
                 } else {
                     assertNull(b.getViews());
                     assertEquals(requestRow.getViews(), new Integer(0));
                 }
-                if (requestRow.getClicks() != null &&  b.getClicks() != null ) {
+                if (requestRow.getClicks() != null && b.getClicks() != null) {
                     assertEquals(requestRow.getClicks(), b.getClicks());
                 } else {
                     assertNull(b.getClicks());
@@ -150,7 +150,7 @@ public class ReportManagementServiceTest extends AbstractTransactionalDataSource
     }
 
 
-    private void saveBannerForSomePriority(String adPlaceUID, HashMap<String,Banner> banners) throws Exception {
+    private void saveBannerForSomePriority(String adPlaceUID, HashMap<String, Banner> banners) throws Exception {
         DateFormat dfm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Banner reportBanner = new Banner();
         String bannerName = STRING_FOR_BANNER_NAME;
@@ -211,12 +211,11 @@ public class ReportManagementServiceTest extends AbstractTransactionalDataSource
         return b;
     }
 
-    private void getBannerClick(String adPlaceUID, int bannerId, int adPlaceId) throws Exception {
+    private void getBannerClick(String adPlaceUid, String bannerUid) throws Exception {
         RequestParametersForm form = new RequestParametersForm();
-        form.setAdPlaceUid(adPlaceUID);
         form.setIp(1L);
-        form.setBannerId(bannerId);
-        form.setAdPlaceId(adPlaceId);
+        form.setBannerUid(bannerUid);
+        form.setAdPlaceUid(adPlaceUid);
         form.setEventType(ApplicationConstants.CLICK_AD_SERVER_EVENT_TYPE);
         ServerRequest serverRequest = new ServerRequest();
         HttpServletResponse serverResponse = new WinstoneResponse();

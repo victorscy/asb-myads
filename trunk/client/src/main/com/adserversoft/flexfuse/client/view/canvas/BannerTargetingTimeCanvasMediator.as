@@ -31,7 +31,7 @@ public class BannerTargetingTimeCanvasMediator extends BaseMediator {
         var isAllBitsSelected:Boolean = (uiComponent.banner.dayBits == null) ? true :
                 uiComponent.banner.isAllBitsSelected(uiComponent.banner.dayBits);
         if (isAllBitsSelected) {
-            uiComponent.banner.dayBits = ApplicationConstants.initBits(7, false); // = "0000000";
+            uiComponent.banner.dayBits = ApplicationConstants.initBits(7, true); // = "0000000";
         }
         for (var i:int = 0; i < 7; i++) {
             uiComponent["cb" + i].selected = uiComponent.banner.dayBits.charAt(i) == '1';

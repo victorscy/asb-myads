@@ -1,6 +1,7 @@
 package com.adserversoft.flexfuse.server.ui;
 
 import com.adserversoft.flexfuse.server.api.ApplicationConstants;
+import com.adserversoft.flexfuse.server.api.Banner;
 import com.adserversoft.flexfuse.server.api.ContextAwareSpringBean;
 import com.adserversoft.flexfuse.server.api.User;
 import com.adserversoft.flexfuse.server.api.ui.ISessionService;
@@ -72,7 +73,9 @@ public class UploadServlet extends AbstractService {
                         throw new Exception("failed upload banner file");
                     }
                     UserSession currentUserSession = sessionService.get(sr.sessionId);
-                    currentUserSession.bannerFiles.put(bannerUid, bbs);
+                    Banner b = new Banner();
+                    b.setContent(bbs);
+                    currentUserSession.uploadedBanners.put(bannerUid, b);
                 } catch (Exception e) {
                     logger.log(Level.SEVERE, e.getMessage());
                 }

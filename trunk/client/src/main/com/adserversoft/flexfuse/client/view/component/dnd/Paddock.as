@@ -132,6 +132,7 @@ public class Paddock extends VBox {
 
             //changing banner's state to display different columns
             newBannerView.currentStateName = BannerView.ASSIGNED_STATE;
+            dndWizard.bannerAdFormatEnable(dndWizard.banners.getValue(draggedBannerView.bannerUid));
         }
 
         //adding banner to this paddock

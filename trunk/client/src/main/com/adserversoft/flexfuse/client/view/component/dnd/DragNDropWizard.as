@@ -1,5 +1,7 @@
 package com.adserversoft.flexfuse.client.view.component.dnd {
+import com.adserversoft.flexfuse.client.ApplicationFacade;
 import com.adserversoft.flexfuse.client.model.ApplicationConstants;
+import com.adserversoft.flexfuse.client.model.BannerProxy;
 import com.adserversoft.flexfuse.client.model.vo.AdPlaceVO;
 import com.adserversoft.flexfuse.client.model.vo.BannerVO;
 import com.adserversoft.flexfuse.client.model.vo.IDragNDropWizard;
@@ -102,6 +104,7 @@ public class DragNDropWizard extends HDividedBox implements IDragNDropWizard {
             var banner:BannerVO = banners.getValues()[i] as BannerVO;
             if (banner.adPlaceUid == null) {
                 addBanner(banner);
+                bannerAdFormatEnable(banner);
             }
         }
 
@@ -171,7 +174,9 @@ public class DragNDropWizard extends HDividedBox implements IDragNDropWizard {
 
     public function deleteBanner(banner:BannerVO):void {
         var bannerView:BannerView = findBannerViewByUid(banner.uid);
-
+        if (banners.getValue(banner.parentUid) != null) {
+            bannerAdFormatEnable(banners.getValue(banner.parentUid));
+        }
         if (banner.adPlaceUid == null) {
             bannersPanel.rightVB.removeChild(bannerView);
         } else {
@@ -207,6 +212,15 @@ public class DragNDropWizard extends HDividedBox implements IDragNDropWizard {
         } else {
             adPlace.isAdFormatEnabled = false;
         }
+    }
+
+    public function bannerAdFormatEnable(banner:BannerVO):void {
+        if (banner.adPlaceUid != null) {
+            banner.isAdFormatEnabled = false;
+            return;
+        }
+        var bannerProxy:BannerProxy = ApplicationFacade.getInstance().retrieveProxy(BannerProxy.NAME) as BannerProxy;
+        banner.isAdFormatEnabled = bannerProxy.getBannersByParentUid(banner.uid).length == 0;
     }
 }
 }

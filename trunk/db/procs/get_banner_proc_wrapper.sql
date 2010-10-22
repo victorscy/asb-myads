@@ -1,12 +1,20 @@
 DELIMITER ;;
 DROP PROCEDURE if exists get_banner_proc_wrapper;
 
-CREATE PROCEDURE get_banner_proc_wrapper(IN ad_place_uid VARCHAR(255), IN now_date_time TIMESTAMP, IN ip BIGINT,OUT ad_place_id INTEGER, OUT banner_uid VARCHAR(255), OUT ad_format_id INTEGER, OUT banner_content_type_id INTEGER)
+CREATE PROCEDURE get_banner_proc_wrapper(
+  IN ad_place_uid VARCHAR(255),
+  IN now_date_time TIMESTAMP,
+  IN ip BIGINT,
+  OUT banner_uid VARCHAR(255),
+  OUT ad_format_id INTEGER,
+  OUT banner_content_type_id INTEGER
+)
 
 BEGIN
 
   
   DECLARE ad_place_state INTEGER;
+  DECLARE ad_place_id INTEGER;
   DECLARE banner_id INTEGER;
 
   SELECT

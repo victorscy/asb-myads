@@ -12,9 +12,7 @@ import java.io.Serializable;
  * Email: Vitaly.Sazanovich@gmail.com
  */
 public class RequestParametersForm implements Serializable {
-    private Integer adPlaceId;
     private String adPlaceUid;
-    private Integer bannerId;
     private String bannerUid;
     private String adServerUrl;
     private int eventType;
@@ -25,7 +23,6 @@ public class RequestParametersForm implements Serializable {
     private String adSourceUrl;
     private Long ip;
 
-    private Banner banner;
     private Object response;
 
     public String getAdSourceUrl() {
@@ -50,22 +47,6 @@ public class RequestParametersForm implements Serializable {
 
     public void setResponse(Object response) {
         this.response = response;
-    }
-
-    public Banner getBanner() {
-        return banner;
-    }
-
-    public void setBanner(Banner banner) {
-        this.banner = banner;
-    }
-
-    public Integer getAdPlaceId() {
-        return adPlaceId;
-    }
-
-    public void setAdPlaceId(Integer adPlaceId) {
-        this.adPlaceId = adPlaceId;
     }
 
     public ServerRequest getServerRequest() {
@@ -106,14 +87,6 @@ public class RequestParametersForm implements Serializable {
 
     public void setBannerUid(String bannerUid) {
         this.bannerUid = bannerUid;
-    }
-
-    public Integer getBannerId() {
-        return bannerId;
-    }
-
-    public void setBannerId(Integer bannerId) {
-        this.bannerId = bannerId;
     }
 
     public int getEventType() {

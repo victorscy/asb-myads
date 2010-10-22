@@ -245,8 +245,8 @@ Email: Vitaly.Sazanovich@gmail.com
                  trust="yes"
                  failonerror="false"
                  timeout="30000"
-                 username="vitaly"
-                 password="vitaly"
+                 username="${ssh.username}"
+                 password="${ssh.password}"
                  command="cd ${checkout.path}/db;bash recreatedb.sh;bash updatedb.sh myads1;bash updatedb.sh myads2;bash updatedb.sh myads3;"/>
     </target>
 

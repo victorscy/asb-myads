@@ -2,6 +2,8 @@ package com.adserversoft.flexfuse.server.adserver;
 
 import com.adserversoft.flexfuse.server.api.ApplicationConstants;
 import com.adserversoft.flexfuse.server.api.Banner;
+import com.adserversoft.flexfuse.server.api.dao.IBannerDAO;
+import com.adserversoft.flexfuse.server.api.ui.ISessionService;
 import com.adserversoft.flexfuse.server.dao.NextBannerProcResult;
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,9 +24,10 @@ public class FileProcessor extends AbstractProcessor {
 
     private AdServerModelBuilder adServerModelBuilder;
 
+
     public void processRequest(RequestParametersForm form, Date nowDateTime) {
         try {
-            Banner banner = form.getBanner();
+            Banner banner = getBanner(form);
             InputStream is = new ByteArrayInputStream(banner.getContent());
             if (is == null) {
                 logger.log(Level.SEVERE, "Banner file not found for:" + ((banner == null) ? "null banner" : banner.getId()));
@@ -33,7 +36,6 @@ public class FileProcessor extends AbstractProcessor {
                     NextBannerProcResult res = new NextBannerProcResult();
                     res.setBannerUid(banner.getUid());
                     res.setAdFormatId(banner.getAdFormatId());
-                    res.setAdPlaceId(form.getAdPlaceId());
                     form.setNextBannerProcResult(res);
                     adServerModelBuilder.buildTemplateParams(form);
                     Map<String, Object> paramsMap = new HashMap<String, Object>();
@@ -66,4 +68,5 @@ public class FileProcessor extends AbstractProcessor {
     public void setAdServerModelBuilder(AdServerModelBuilder adServerModelBuilder) {
         this.adServerModelBuilder = adServerModelBuilder;
     }
+
 }

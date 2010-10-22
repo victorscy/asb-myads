@@ -13,7 +13,7 @@ public dynamic class BannerVO extends BaseVO {
     public var adPlaceUid:String;// if dragged to an ad place, adPlaceUid is set
 
     public var targetUrl:String = "http://www.";
-
+    public var isAdFormatEnabled:Boolean = true;
     public var bannerName:String;
     public var bannerContentTypeId:int;
     public var fileSize:int;
@@ -130,8 +130,5 @@ public dynamic class BannerVO extends BaseVO {
         trafficShare = banner.trafficShare;
     }
 
-    public function get isAdFormatEnabled():Boolean {
-        return adPlaceUid == null;
-    }
 }
 }

@@ -1,6 +1,7 @@
 package com.adserversoft.flexfuse.server.adserver;
 
 import com.adserversoft.flexfuse.server.api.ApplicationConstants;
+import com.adserversoft.flexfuse.server.api.Banner;
 import com.adserversoft.flexfuse.server.dao.InstallationContextHolder;
 import com.adserversoft.flexfuse.server.dao.NextBannerProcResult;
 
@@ -30,12 +31,13 @@ public class AdCodeProcessor extends AbstractProcessor {
                 return;
             }
 
-            if (form.getNextBannerProcResult().getBannerUid() == null) {                //preview
+            if (form.getNextBannerProcResult().getBannerUid() == null) {//preview
+                Banner banner = getBanner(form);
                 NextBannerProcResult dbProcResult = new NextBannerProcResult();
                 InstallationContextHolder.setCustomerType(form.getServerRequest().installationId);
                 dbProcResult.setBannerUid(form.getBannerUid());
-                dbProcResult.setAdFormatId(form.getBanner().getAdFormatId());
-                dbProcResult.setBannerContentTypeId(form.getBanner().getBannerContentTypeId());
+                dbProcResult.setAdFormatId(banner.getAdFormatId());
+                dbProcResult.setBannerContentTypeId(banner.getBannerContentTypeId());
                 form.setNextBannerProcResult(dbProcResult);
 
                 adServerModelBuilder.buildTemplateParams(form);
