@@ -1,11 +1,12 @@
 package com.adserversoft.flexfuse.server.adserver;
 
 import com.adserversoft.flexfuse.server.api.AdEvent;
-import com.adserversoft.flexfuse.server.api.dao.IAdEventDAO;
+import com.adserversoft.flexfuse.server.api.Banner;
+import com.adserversoft.flexfuse.server.api.dao.IBannerDAO;
+import com.adserversoft.flexfuse.server.api.ui.ISessionService;
 import com.adserversoft.flexfuse.server.dao.InstallationContextHolder;
 import com.adserversoft.flexfuse.server.service.AbstractManagementService;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.web.context.ContextLoaderListener;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
@@ -19,9 +20,18 @@ import java.util.logging.Logger;
  */
 public abstract class AbstractProcessor extends AbstractManagementService {
     static Logger logger = Logger.getLogger(AbstractProcessor.class.getName());
-    //  private ReporterModel reporterModel;
+
+    protected ISessionService sessionService;
 
     public abstract void processRequest(RequestParametersForm form, Date nowDateTime);
+
+    protected Banner getBanner(RequestParametersForm form) throws Exception {
+        Banner banner = getBannerDAO().getBannerByUid(form.getBannerUid());
+        if (banner == null) {
+            banner = sessionService.getBannerFromSessions(form.getBannerUid());
+        }
+        return banner;
+    }
 
     protected void writeResponse(String str, HttpServletResponse response) {
         try {
@@ -43,25 +53,26 @@ public abstract class AbstractProcessor extends AbstractManagementService {
     }
 
 
-    public void registerEvent(RequestParametersForm form, Date nowDateTime) throws  DataIntegrityViolationException
-    {
+    public void registerEvent(RequestParametersForm form, Date nowDateTime) throws DataIntegrityViolationException {
         if (!form.getCount()) return;
-            AdEvent eo = new AdEvent();
-            eo.setTimeStampId(nowDateTime);
-            eo.setInstId(form.getServerRequest().installationId);
-            eo.setBannerId(form.getBannerId());
-            eo.setAdPlaceId(form.getAdPlaceId());
-            eo.setEventId(form.getEventType());
-            InstallationContextHolder.setCustomerType(form.getServerRequest().installationId);
-            getAdEventDAO().create(eo);
-            // reporterModel.registerEvent(eo);
+        AdEvent eo = new AdEvent();
+        eo.setTimeStampId(nowDateTime);
+        eo.setInstId(form.getServerRequest().installationId);
+        eo.setBannerUid(form.getBannerUid());
+        eo.setAdPlaceUid(form.getAdPlaceUid());
+        eo.setEventId(form.getEventType());
+        InstallationContextHolder.setCustomerType(form.getServerRequest().installationId);
+        getAdEventDAO().create(eo);
     }
 
-    /*public ReporterModel getReporterModel() {
-        return reporterModel;
+
+
+    public ISessionService getSessionService() {
+        return sessionService;
     }
 
-    public void setReporterModel(ReporterModel reporterModel) {
-        this.reporterModel = reporterModel;
-    }*/
+    public void setSessionService(ISessionService sessionService) {
+        this.sessionService = sessionService;
+    }
+
 }

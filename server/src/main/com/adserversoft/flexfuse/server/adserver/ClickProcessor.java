@@ -22,10 +22,7 @@ public class ClickProcessor extends AbstractProcessor {
 
         InstallationContextHolder.setCustomerType(form.getServerRequest().installationId);
         //IBannerDAO bannerDAO = (IBannerDAO) ContextLoaderListener.getCurrentWebApplicationContext().getBean("bannerDAO" + InstallationContextHolder.getCustomerType().intValue());
-        if (form.getBannerId() != null) {
-            form.setBanner(getBannerDAO().getBannerById(form.getBannerId()));
-        }
-        Banner banner = form.getBanner();
+        Banner banner = getBanner(form);
 
         if (banner != null && banner.getTargetUrl() != null) {
             String targetUrl = checkTargetURl(banner.getTargetUrl());

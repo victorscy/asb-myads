@@ -87,7 +87,15 @@ public class SettingsTitleWindowMediator extends BaseMediator implements IMediat
     }
 
     private function validation():Boolean {
-        var result:ValidationResultEvent = uiComponent.adminSettingsCanvas.passwordStringValidator.validate();
+        var result:ValidationResultEvent = uiComponent.adminSettingsCanvas.emailStringValidator.validate();
+        if (result.type == ValidationResultEvent.INVALID) {
+            removeEventListeners();
+            uiComponent.tabNavigator.selectedChild = uiComponent.adminSettingsCanvas;
+            uiComponent.invalidField = uiComponent.adminSettingsCanvas.emailTI;
+            Alert.show("Email is required.", "Invalid", Alert.OK, ApplicationConstants.application as Sprite, onAlertClose);
+            return false;
+        }
+        result = uiComponent.adminSettingsCanvas.passwordStringValidator.validate();
         if (result.type == ValidationResultEvent.INVALID) {
             removeEventListeners();
             uiComponent.tabNavigator.selectedChild = uiComponent.adminSettingsCanvas;
@@ -194,6 +202,7 @@ public class SettingsTitleWindowMediator extends BaseMediator implements IMediat
 
         if (validation()) {
             PopManager.setEnabledStateToPopUp(false, SettingsTitleWindowMediator);
+            userProxy.authenticatedUser.email = userProxy.user.email;
             userProxy.authenticatedUser.firstName = userProxy.user.firstName;
             userProxy.authenticatedUser.lastName = userProxy.user.lastName;
             userProxy.authenticatedUser.smtpSubject = userProxy.user.smtpSubject;

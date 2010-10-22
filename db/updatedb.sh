@@ -22,3 +22,4 @@ mysql -ubanner -pbanner123 $1 < procs/on_insert_into_ad_events_log.sql
 mysql -ubanner -pbanner123 $1 < procs/update_or_insert_aggregate_reports.sql
 mysql -ubanner -pbanner123 $1 < sql/country.sql
 mysql -ubanner -pbanner123 $1 < sql/ip_to_country.sql
+mysql -ubanner -pbanner123 $1 < sql/set_table_engine_to_innodb.sql

@@ -43,7 +43,7 @@ public class ReportProxy extends Proxy implements IProxy {
         reportRO.setCustomObjectToSession.addEventListener("result", setCustomObjectToSessionResultHandler);
         reportRO.setCustomObjectToSession.addEventListener("fault", faultHandler);
 
-       // timeUpdateTimer.addEventListener(TimerEvent.TIMER, onTimerUpdateHandler)
+       timeUpdateTimer.addEventListener(TimerEvent.TIMER, onTimerUpdateHandler)
     }
 
 

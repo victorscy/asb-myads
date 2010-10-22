@@ -1,6 +1,7 @@
 package com.adserversoft.flexfuse.server.api.ui;
 
 
+import com.adserversoft.flexfuse.server.api.Banner;
 import com.adserversoft.flexfuse.server.api.ui.UserSession;
 import com.adserversoft.flexfuse.server.api.ui.ServerRequest;
 
@@ -19,5 +20,5 @@ public interface ISessionService {
 
     public void update();
 
-    public byte[] getBannerFromAllSession(String bannerUid);
+    public Banner getBannerFromSessions(String bannerUid);
 }

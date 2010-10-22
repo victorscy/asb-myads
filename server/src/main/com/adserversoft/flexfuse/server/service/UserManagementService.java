@@ -124,10 +124,10 @@ public class UserManagementService extends AbstractManagementService implements 
 
     @Override
     public void updateSettings(User user, String url, byte[] bbs, String filename) throws Exception {
-        User currentUser = getUserDAO().getUserByEmail(user.getEmail());
-        if (currentUser == null) {
-            throw new Exception("failure.userNotExists");
-        }
+//        User currentUser = getUserDAO().getUserByEmail(user.getEmail());
+//        if (currentUser == null) {
+//            throw new Exception("failure.userNotExists");
+//        }
         if (user.isPasswordReset()) {
             String pw_hash = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
             user.setPassword(pw_hash);

@@ -34,7 +34,6 @@ public class BannerDAO extends AbstractDAO implements IBannerDAO {
         Map results = msp.execute(inParameters);
         NextBannerProcResult gnbp = new NextBannerProcResult();
         try {
-            gnbp.setAdPlaceId((Integer) results.get("ad_place_id"));
             gnbp.setBannerUid((String) results.get("banner_uid"));
             gnbp.setAdFormatId((Integer) results.get("ad_format_id"));
             gnbp.setBannerContentTypeId((Integer) results.get("banner_content_type_id"));

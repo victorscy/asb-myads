@@ -30,18 +30,17 @@ public class StateService extends AbstractService implements IStateService {
         Locale locale = new Locale("en");
         try {
             UserSession currentUserSession = sessionService.get(sr.sessionId);
+
             for (Banner iBanner : state.getBanners()) {
-                byte[] bbs = (byte[]) currentUserSession.bannerFiles.get(iBanner.getUid());
-                if (bbs != null) {
-                    iBanner.setContent(bbs);
-                } else {
-                    bbs = (byte[]) currentUserSession.bannerFiles.get(iBanner.getParentUid());
-                    if (bbs != null) {
-                        iBanner.setContent(bbs);
-                    }
+                Banner uploadedBanner = sessionService.getBannerFromSessions(iBanner.getUid());
+                if (uploadedBanner == null) {
+                    uploadedBanner = sessionService.getBannerFromSessions(iBanner.getParentUid());
+                }
+                if (uploadedBanner != null && uploadedBanner.getContent() != null) {
+                    iBanner.setContent(uploadedBanner.getContent());
                 }
             }
-            currentUserSession.bannerFiles.clear();
+            currentUserSession.uploadedBanners.clear();
             getStateManagementService().updateState(state);
             sa.result = ApplicationConstants.SUCCESS;
             return sa;

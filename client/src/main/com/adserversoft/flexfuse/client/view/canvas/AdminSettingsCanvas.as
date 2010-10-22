@@ -26,6 +26,7 @@ public class AdminSettingsCanvas extends BaseCanvas {
     [Bindable]
     public var logoFileTI:TextInput;
 
+    public var emailStringValidator:StringValidator;
     public var passwordStringValidator:NoTrimStringValidator;
     public var firstNameStringValidator:StringValidator;
     public var lastNameStringValidator:StringValidator;

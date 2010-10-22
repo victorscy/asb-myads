@@ -16,6 +16,12 @@
                         minLength="1"
                         maxLength="100"/>
 
+    <mx:StringValidator id="emailStringValidator"
+                        source="{emailTI}"
+                        property="text"
+                        minLength="1"
+                        maxLength="100"/>
+
     <mx:StringValidator id="lastNameStringValidator"
                         source="{lastNameTI}"
                         property="text"
@@ -32,7 +38,7 @@
 
             <mx:FormItem id="emailLbl" label="Email:" required="true" width="100%">
                 <mx:TextInput maxChars="100"
-                              id="emailTI" dropShadowColor="0x000000" enabled="false" width="100%"/>
+                              id="emailTI" dropShadowColor="0x000000" enabled="true" width="100%"/>
             </mx:FormItem>
 
 

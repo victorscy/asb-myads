@@ -6,9 +6,7 @@ package com.adserversoft.flexfuse.server.dao;
  */
 public class NextBannerProcResult {
 
-    private Integer adPlaceId;
     private String bannerUid;
-    //  private Integer bannerId;
     private Integer adFormatId;
     private Integer bannerContentTypeId;
 
@@ -16,30 +14,11 @@ public class NextBannerProcResult {
 
     }
 
-    public NextBannerProcResult(Integer ad_placeId, String banner_uid, Integer ad_format, Integer banner_content_type_id) {
-        this.adPlaceId = ad_placeId;
+    public NextBannerProcResult(String banner_uid, Integer ad_format, Integer banner_content_type_id) {
         this.bannerUid = banner_uid;
-        // this.bannerId = banner_id;
         this.adFormatId = ad_format;
         this.bannerContentTypeId = banner_content_type_id;
     }
-
-    public Integer getAdPlaceId() {
-        return adPlaceId;
-    }
-
-    public void setAdPlaceId(Integer adPlaceId) {
-        this.adPlaceId = adPlaceId;
-    }
-
-
-    /* public Integer getBannerId() {
-        return bannerId;
-    }
-
-    public void setBannerId(Integer bannerId) {
-        this.bannerId = bannerId;
-    }*/
 
     public Integer getAdFormatId() {
         return adFormatId;

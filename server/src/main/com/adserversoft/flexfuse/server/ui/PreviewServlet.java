@@ -6,8 +6,6 @@ import com.adserversoft.flexfuse.server.api.Banner;
 import com.adserversoft.flexfuse.server.api.ContextAwareSpringBean;
 import com.adserversoft.flexfuse.server.api.dao.IBannerDAO;
 import com.adserversoft.flexfuse.server.api.ui.ISessionService;
-import com.adserversoft.flexfuse.server.api.ui.ServerRequest;
-import com.adserversoft.flexfuse.server.api.ui.UserSession;
 import com.adserversoft.flexfuse.server.dao.InstallationContextHolder;
 import org.springframework.web.context.ContextLoaderListener;
 
@@ -58,7 +56,7 @@ public class PreviewServlet extends AbstractService {
             IBannerDAO bannerDAO = (IBannerDAO) ContextLoaderListener.getCurrentWebApplicationContext().getBean("bannerDAO" + InstallationContextHolder.getCustomerType().intValue());
             Banner banner = bannerDAO.getBannerByUid(uid);        // right banner in DB
 
-            if (banner == null && sessionService.getBannerFromAllSession(uid) == null && request.getParameter(ApplicationConstants.BANNER_PARENT_UID_REQUEST_PARAMETER_NAME)!=null) {
+            if (banner == null && sessionService.getBannerFromSessions(uid) == null && request.getParameter(ApplicationConstants.BANNER_PARENT_UID_REQUEST_PARAMETER_NAME)!=null) {
                 uid = request.getParameter(ApplicationConstants.BANNER_PARENT_UID_REQUEST_PARAMETER_NAME);
             }
 

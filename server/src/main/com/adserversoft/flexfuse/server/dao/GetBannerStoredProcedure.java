@@ -19,7 +19,6 @@ public class GetBannerStoredProcedure extends StoredProcedure {
         declareParameter(new SqlParameter("ad_place_uid", Types.VARCHAR));
         declareParameter(new SqlParameter("now_date_time", Types.TIMESTAMP));
         declareParameter(new SqlParameter("ip", Types.BIGINT));
-        declareParameter(new SqlOutParameter("ad_place_id", Types.INTEGER));
         declareParameter(new SqlOutParameter("banner_uid", Types.VARCHAR));
         declareParameter(new SqlOutParameter("ad_format_id", Types.INTEGER));
         declareParameter(new SqlOutParameter("banner_content_type_id", Types.INTEGER));

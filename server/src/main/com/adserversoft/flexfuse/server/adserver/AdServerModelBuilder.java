@@ -1,9 +1,6 @@
 package com.adserversoft.flexfuse.server.adserver;
 
 import com.adserversoft.flexfuse.server.api.ApplicationConstants;
-import com.adserversoft.flexfuse.server.api.Banner;
-import com.adserversoft.flexfuse.server.api.ContextAwareSpringBean;
-import com.adserversoft.flexfuse.server.api.ui.ISessionService;
 import com.adserversoft.flexfuse.server.api.ui.ServerRequest;
 import com.adserversoft.flexfuse.server.dao.InstallationContextHolder;
 import com.adserversoft.flexfuse.server.service.AbstractManagementService;
@@ -107,55 +104,15 @@ public class AdServerModelBuilder extends AbstractManagementService {
             logger.log(Level.SEVERE, "Couldn't find ip:" + e.getMessage());
         }
 
-
-        //bannerId
-        try {
-            if (requestParametersMap.containsKey(ApplicationConstants.BANNER_ID_REQUEST_PARAMETER_NAME)) {
-                String bannerIdStr = requestParametersMap.get(ApplicationConstants.BANNER_ID_REQUEST_PARAMETER_NAME);
-                requestParametersForm.setBannerId(Integer.parseInt(bannerIdStr));
-                requestParametersForm.setBanner(getBannerDAO().getBannerById(requestParametersForm.getBannerId()));
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            logger.log(Level.SEVERE, "Couldn't find or parse bannerId:" + ex.getMessage());
-            requestParametersForm.setBannerId(null);
-        }
-
-
         //bannerUid
         try {
             if (requestParametersMap.containsKey(ApplicationConstants.BANNER_UID_REQUEST_PARAMETER_NAME)) {
                 String bannerUidStr = requestParametersMap.get(ApplicationConstants.BANNER_UID_REQUEST_PARAMETER_NAME);
                 requestParametersForm.setBannerUid(bannerUidStr);
-                requestParametersForm.setBanner(getBannerDAO().getBannerByUid(requestParametersForm.getBannerUid()));
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-
-        if (requestParametersForm.getBanner() == null) {
-            requestParametersForm.setBanner(new Banner());
-            requestParametersForm.getBanner().setId(1);
-            ISessionService sessionService = (ISessionService) ContextAwareSpringBean.APP_CONTEXT.getBean("sessionService");
-            requestParametersForm.getBanner().setContent(sessionService.getBannerFromAllSession(requestParametersMap.get(ApplicationConstants.BANNER_UID_REQUEST_PARAMETER_NAME)));
-
-        }
-
-
-        //adFormatId when request from preview
-        try {
-            if (requestParametersMap.containsKey(ApplicationConstants.AD_FORMAT_ID_REQUEST_PARAMETER_NAME)) {
-                String adFormatIdStr = requestParametersMap.get(ApplicationConstants.AD_FORMAT_ID_REQUEST_PARAMETER_NAME);
-                requestParametersForm.getBanner().setAdFormatId(Integer.parseInt(adFormatIdStr));
-
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            ex.getStackTrace();
-        }
-
 
         //adplaceUID
         try {
@@ -166,25 +123,6 @@ public class AdServerModelBuilder extends AbstractManagementService {
         } catch (Exception ex) {
             ex.printStackTrace();
             ex.getStackTrace();
-        }
-
-        try {
-            if (requestParametersMap.containsKey(ApplicationConstants.PLACE_ID_REQUEST_PARAMETER_NAME)) {
-                String adPlaceIdStr = requestParametersMap.get(ApplicationConstants.PLACE_ID_REQUEST_PARAMETER_NAME);
-                requestParametersForm.setAdPlaceId(Integer.parseInt(adPlaceIdStr));
-            }
-        } catch (Exception ex) {
-            ex.getStackTrace();
-        }
-
-        //click-through
-        try {
-            if (requestParametersForm.getBanner() != null) {
-                requestParametersForm.setClickThroughUrl(requestParametersForm.getBanner().getTargetUrl());
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            requestParametersForm.setClickThroughUrl(bannerNotFoundOnClickRedirectUrl);
         }
 
         //ad server url
@@ -199,18 +137,6 @@ public class AdServerModelBuilder extends AbstractManagementService {
             requestParametersForm.setResponse(response);
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-
-
-        //banner content type id
-        try {
-            if (requestParametersMap.containsKey(ApplicationConstants.BANNER_CONTENT_TYPE)) {
-                String bannerContentTypeId = requestParametersMap.get(ApplicationConstants.BANNER_CONTENT_TYPE);
-                requestParametersForm.getBanner().setBannerContentTypeId(Integer.parseInt(bannerContentTypeId));
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            ex.getStackTrace();
         }
 
 
@@ -251,9 +177,9 @@ public class AdServerModelBuilder extends AbstractManagementService {
                 .append("=")
                 .append(form.getNextBannerProcResult().getBannerUid())
                 .append("|")
-                .append(ApplicationConstants.PLACE_ID_REQUEST_PARAMETER_NAME)
+                .append(ApplicationConstants.PLACE_UID_REQUEST_PARAMETER_NAME)
                 .append("=")
-                .append(form.getNextBannerProcResult().getAdPlaceId())
+                .append(form.getAdPlaceUid())
                 .append("|")
                 .append(ApplicationConstants.INST_ID_REQUEST_PARAMETER_NAME)
                 .append("=")
@@ -276,9 +202,9 @@ public class AdServerModelBuilder extends AbstractManagementService {
                 .append("=")
                 .append(form.getNextBannerProcResult().getBannerUid())
                 .append("&")
-                .append(ApplicationConstants.PLACE_ID_REQUEST_PARAMETER_NAME)
+                .append(ApplicationConstants.PLACE_UID_REQUEST_PARAMETER_NAME)
                 .append("=")
-                .append(form.getNextBannerProcResult().getAdPlaceId())
+                .append(form.getAdPlaceUid())
                 .append("&")
                 .append(ApplicationConstants.INST_ID_REQUEST_PARAMETER_NAME)
                 .append("=")
@@ -288,7 +214,7 @@ public class AdServerModelBuilder extends AbstractManagementService {
                 .append("&")
                 .append(ApplicationConstants.BANNER_CONTENT_TYPE)
                 .append("=")
-                .append(form.getNextBannerProcResult().getBannerContentTypeId())                
+                .append(form.getNextBannerProcResult().getBannerContentTypeId())
                 .toString();
         form.setAdSourceUrl(adSource);
     }

@@ -118,7 +118,7 @@ public class PlaceHolder extends VBox {
 
             newBannerView.bannerUid = newBanner.uid;
             dndWizard.banners.put(newBanner.uid, newBanner);
-
+            dndWizard.bannerAdFormatEnable(dndWizard.banners.getValue(draggedBannerView.bannerUid));
             //changing banner's state to display different columns
             newBannerView.currentStateName = BannerView.ASSIGNED_STATE;
 

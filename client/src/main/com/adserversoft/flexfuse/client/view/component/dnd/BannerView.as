@@ -106,7 +106,7 @@ public class BannerView extends DraggableControl {
         BindingUtils.bindProperty(viewsL, "text", banner, "views");
         BindingUtils.bindProperty(clicksL, "text", banner, "clicks");
         BindingUtils.bindProperty(ctrL, "text", banner, "ctr");
-        BindingUtils.bindProperty(adFormatCB, "enabled", banner, "isAdFormatEnabled");
+        BindingUtils.bindProperty(adFormatCB, "enabled", dndWizard.banners.getValue(bannerUid), "isAdFormatEnabled");
 
         adFormatCB.selectedItem = banner.adFormat;
 
@@ -387,6 +387,7 @@ public class BannerView extends DraggableControl {
                 ind = ind > childrenLength - 2 ? childrenLength - 2 : ind;
                 ++ind;
             }
+            dndWizard.bannerAdFormatEnable(dndWizard.banners.getValue(draggedBannerView.bannerUid));
             //inserting
             dropPaddock.contentVB.addChildAt(newBannerView, ind);
             newBannerView.refresh();
