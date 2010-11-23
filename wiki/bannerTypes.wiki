@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#Banner Types Describes how to set up 3 different types of banners on ASB MyAds.
 
 = Setting Up Image/Flash/HTML Banners =
 
