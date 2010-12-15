@@ -1,0 +1,4 @@
+#summary Describes how to assign banners to ad places.
+
+= Assigning Banners =
+
