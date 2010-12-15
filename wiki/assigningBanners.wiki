@@ -2,3 +2,8 @@
 
 = Assigning Banners =
 
+You should create a banner in the right panel and then drag it to a paddock of an ad place. As a result the banner is cloned. The binding between the original and the cloned banner still exists. The banner is identified by:
+<ul>
+<li>banner name</li>
+<li>banner file</li>
+</ul>
