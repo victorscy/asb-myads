@@ -1,0 +1,7 @@
+#summary Describes how geo targeting works in ASB MyAds.
+
+= Geo Targeting =
+
+We are using a free ip-to-country datatabase available at <a href="http://ip-to-country.webhosting.info/node/view/6">http://ip-to-country.webhosting.info/node/view/6</a>.
+
+Determining whether to serve the banner is implemented in db/procs/is_valid_country.sql
