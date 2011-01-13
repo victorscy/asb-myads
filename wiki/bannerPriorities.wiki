@@ -1,0 +1,5 @@
+#summary Describes how to set up banners with different priorities and define a default banner.
+
+= Banner Priorities =
+
+Every banner's priority is defined visually. The banner on top in the paddock has the highest priority. Banners that don't have any padding between them have equal priority
