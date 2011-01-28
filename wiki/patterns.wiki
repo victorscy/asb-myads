@@ -6,3 +6,9 @@ We currently support 2 special pattern symbols:
 {{{*}}} - for any sequence of symbols
 
 {{{_}}} - for any single symbol
+
+
+== Examples == 
+|| *Pattern* || *Matches* ||
+|| *soft.com* || http://adserversoft.com, http://microsoft.com ||
+|| http://adserversoft.com?ref=23_ || http://adserversoft.com?ref=23a, http://adserversoft.com?ref=234 ||
