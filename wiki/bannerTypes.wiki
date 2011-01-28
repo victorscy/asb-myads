@@ -2,7 +2,7 @@
 
 = Setting Up Image/Flash/HTML Banners =
 
-[http://www.adserverbeans.com/myads.html ASB MyAds] currently supports 3 banner types:
+[http://www.adserverbeans.com/asb_myads.html ASB MyAds] currently supports 3 banner types:
   * image (jpeg, png, bmp, gif, etc.)
   * Flash (swf)
   * HTML (html)
