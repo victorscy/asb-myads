@@ -36,3 +36,7 @@ Now you can target males aged 20-29 by adding the following parameters to a bann
 || *Parameter name* || *Pattern* || *Type* ||
 || sex || male || pattern ||
 || age || {{{2[0-9]{1}}}} || regexp ||
+
+
+== Caveat ==
+Like with other targeting options dynamic parameters are using exclusive logic. Meaning: if targeting by dynamic parameters is used the ad server is trying to find them in the request and if not found the banner is not displayed and other banners are considered.
