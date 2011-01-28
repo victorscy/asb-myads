@@ -1,4 +1,6 @@
 #summary Describes how to write patterns used in targeting by URL, referrer and dynamic parameters.
 
 = Using Patterns =
-
+We currently support 2 special pattern symbols:
+{{{*}}} - for any sequence of symbols
+_ - for any single symbol
