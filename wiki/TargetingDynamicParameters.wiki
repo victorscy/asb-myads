@@ -33,4 +33,4 @@ request.setParameter("asb_custom_parameters","sex="+currentUser.getSex()+"&age="
 Now you can target males aged 20-29 by adding the following parameters to a banner's targeting:
 || *Parameter name* || *Pattern* || *Type* ||
 || sex || male || pattern ||
-|| age || 2[0-9]{1} || regexp ||
+|| age || 2\\[0-9\\]{1} || regexp ||
