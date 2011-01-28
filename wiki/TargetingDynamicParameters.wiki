@@ -1,13 +1,9 @@
 #summary Describes how to use dynamic parameters in targeting options.
 
-= Introduction =
+= Targeting By Dynamic Parameters =
 
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+You can pass any custom parameters from our ad tag to the ad server and target by their values. 
+To do that first take a look at the ad tag. Find the line:
+{{{
+var asb_custom_parameters = "";
+}}}
