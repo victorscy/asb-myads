@@ -1,0 +1,4 @@
+#summary Describes how to write patterns used in targeting by URL, referrer and dynamic parameters.
+
+= Using Patterns =
+
