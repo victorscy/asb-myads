@@ -17,7 +17,9 @@ Next you need to add parameters with their values to the targeting in Banner->Ta
 
 You can use [http://code.google.com/p/asb-myads/wiki/patterns patterns] or regular expressions to set parameter value. 
 
-Eg.: you want to target males aged 20-29. If your site has registration with those data you can pass them to the ad server for targeting:
+==Example==
+
+You want to target males aged 20-29. If your site has registration with those data you can pass them to the ad server for targeting:
 {{{
 var asb_custom_parameters = "sex=male&age=29";
 }}}
