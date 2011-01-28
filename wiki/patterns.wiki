@@ -4,4 +4,5 @@
 We currently support 2 special pattern symbols:
 
 {{{*}}} - for any sequence of symbols
+
 {{{_}}} - for any single symbol
