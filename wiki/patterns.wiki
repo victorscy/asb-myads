@@ -10,5 +10,5 @@ We currently support 2 special pattern symbols:
 
 == Examples == 
 || *Pattern* || *Matches* ||
-|| *soft.com* || http://adserversoft.com, http://microsoft.com ||
-|| http://adserversoft.com?ref=23_ || http://adserversoft.com?ref=23a, http://adserversoft.com?ref=234 ||
+|| {{{*soft.com*}}} || {{{http://adserversoft.com, http://microsoft.com}}} ||
+|| {{{http://adserversoft.com?ref=23_}}} || {{{http://adserversoft.com?ref=23a, http://adserversoft.com?ref=234}}} ||
