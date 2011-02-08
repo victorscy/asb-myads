@@ -13,4 +13,4 @@ So IM is pretty safe. Only incremental database updates are possible.
 
 For IM to appear any of the following should happen:
   * software update that requires db schema update. Software update occurs during the deployment of a new version. 
-  * db.update.required is set to 'true' in <UserHome>/.dbProperties file created by ASB MyAds
+  * db.update.required is set to 'true' in {{{<UserHome>/.dbProperties}}} file created by ASB MyAds
