@@ -1,3 +1,15 @@
 #summary Describes how to use installation manager.
 
 = Installation Manager =
+IM provides the following functionality:
+- setting the number of instances
+- setting custom MySQL username/password
+
+IM *does not* allow any of the following:
+- removing or clearing any of the database intances
+
+So IM is pretty safe. Only incremental database updates are possible. 
+
+For IM to appear any of the following should happen:
+- software update that requires db schema update. Software update occurs during the deployment of a new version. 
+- db.update.required is set to 'true' in <UserHome>/.dbProperties file created by ASB MyAds
