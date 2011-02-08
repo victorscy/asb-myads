@@ -1,0 +1,3 @@
+#summary Describes how to use installation manager.
+
+= Installation Manager =
