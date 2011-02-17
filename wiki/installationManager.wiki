@@ -17,5 +17,5 @@ For IM to appear any of the following should happen:
 
 Requirements:
   * database server (MySQL) should contain a user that has permissions to create databases
-  * MySQL 5.1.{{*}} + (with support for stored procedures and triggers)
+  * MySQL 5.1.{{{*}}} + (with support for stored procedures and triggers)
   * database server should be running on localhost (127.0.0.1) port 3306 (default) - we currently do not have this setting in the installer
