@@ -14,3 +14,8 @@ So IM is pretty safe. Only incremental database updates are possible.
 For IM to appear any of the following should happen:
   * software update or first install that requires db schema update or creation. Software update occurs during the deployment of a new version. 
   * db.update.required is set to 'true' in {{{<UserHome>/.dbProperties}}} file created by ASB MyAds
+
+Requirements:
+  * database server (MySQL) should contain a user that has permissions to create databases
+  * MySQL 5.1.* + (with support for stored procedures and triggers)
+  * database server should be running on localhost (127.0.0.1) port 3306 (default) - we currently do not have this setting in the installer
