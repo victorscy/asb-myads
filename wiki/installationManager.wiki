@@ -17,7 +17,7 @@ For IM to appear the following conditions should be met:
   * software update or first install that requires db schema update or creation. Software update occurs during the deployment of a new version. OR
   * db.update.required is set to 'true' in {{{<UserHome>/.dbProperties}}} file created by ASB MyAds
 
-About <UserHome>/.dbProperties File
+About {{{<UserHome>/.dbProperties}}} File
 
 This file is created by IM to store custom db username and password and also db.update.required variable used to trigger IM on app server restart. 
 
