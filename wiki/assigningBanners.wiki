@@ -2,12 +2,12 @@
 
 = Assigning Banners =
 
-You should create a banner in the right panel and then drag it to a paddock of an ad place. As a result the banner is cloned. The binding between the original and the cloned banner still exists. The banner is identified by:
+You should create a banner in the right panel and then drag it to a paddock of an ad place. As a result a new banner identical to the original one is created. The binding between the original and the newly created banner still exists. The banner is identified by:
 <ul>
 <li>banner name</li>
 <li>banner file</li>
 </ul>
-That means if you change banner name or banner file of the original banner it will be automatically changed in all cloned banners.
+That means if you change banner name or banner file of the original banner it will be automatically changed in all child banners.
 All other banners settings are independent for each banner.
 
 ==Example 1==
