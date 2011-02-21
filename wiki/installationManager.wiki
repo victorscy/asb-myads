@@ -22,6 +22,7 @@ So IM is pretty safe. Only incremental database updates are possible.
 This file is created by IM to store custom db username and password and also db.update.required variable used to trigger IM on app server restart. 
 
 == Requirements: ==
-  * database server (MySQL) should contain a user that has permissions to create databases
+  * database server (MySQL) should contain a user that has permissions to create databases. You can create such user using the following SQL:
+{{{grant all privileges on *.* to 'banner'@localhost identified by 'banner123';}}}
   * MySQL 5.1.{{{*}}} + (with support for stored procedures and triggers)
   * database server should be running on localhost (127.0.0.1) port 3306 (default) - we currently do not have this setting in the installer
