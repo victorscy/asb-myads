@@ -12,4 +12,4 @@ This also saves a lot of server resources (CPU, memory, disk space).
 
 So why did we initially need multiple instances? 
 
-We have multiple users (publishers) that need separate environments to run their ads.
+We have multiple users (publishers) that need separate environments to run their ads separately.
