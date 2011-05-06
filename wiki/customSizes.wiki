@@ -2,10 +2,13 @@
 
 = Custom Sizes =
 
-You can change predefined banner sizes in the file server/src/main/app.properties You need to recompile the project after that.
+If you want to change predefined banner sizes you should modify the following files:
 
-If you already started to use ASB MyAds you can change the sizes in the deployed application by editing app.properties within WEB-INF/lib/myads.jar archive. You can open this archive using a regular zip tool such as WinRar. Edit the file and save it back to the archive (overwrite).
-Now don't forget to restart Tomcat.
+server/src/main/app.properties 
+client/locale/en_US/ApplicationResource.properties
+
+You need to recompile the project after that.
+Do not forget to redeploy the app and restart Tomcat.
 
 Ad formats have the following format: 
 ad_format.width_height=id
